@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishly — Nouvelle catégorie</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE6;
+    --border: #E2DDD5;
+    --text: #1A1814;
+    --text-2: #6B6560;
+    --text-3: #A8A29C;
+    --accent: #2D5A3D;
+    --accent-light: #E8F0EB;
+    --amber: #C17B2A;
+    --amber-light: #FBF3E8;
+    --blue: #2A4A7F;
+    --blue-light: #EAF0F8;
+    --red: #B03A2E;
+    --red-light: #FAF0EF;
+    --purple: #5B3FA6;
+    --purple-light: #F0EDFB;
+    --pink: #A6365B;
+    --pink-light: #FAEDF2;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .app-frame {
+    width: 100%;
+    max-width: 1100px;
+    height: 700px;
+    background: var(--surface);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--surface2);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; padding: 0 0.25rem; }
+  .logo-mark { width: 30px; height: 30px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-mark svg { width: 16px; height: 16px; }
+  .logo-text { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+
+  .nav-group { display: flex; flex-direction: column; gap: 2px; }
+  .nav-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); padding: 0 0.5rem; margin-bottom: 6px; }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 9px; padding: 8px 10px;
+    border-radius: 10px; font-size: 13px; color: var(--text-2); cursor: pointer; transition: background 0.15s;
+  }
+  .nav-item:hover { background: var(--border); }
+  .nav-item.active { background: var(--surface); color: var(--text); font-weight: 500; border: 1px solid var(--border); }
+  .nav-icon { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
+  .nav-item.active .nav-icon { opacity: 1; }
+
+  .badge {
+    margin-left: auto; font-size: 11px; font-weight: 500;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-3); border-radius: 20px; padding: 1px 7px; min-width: 22px; text-align: center;
+  }
+  .nav-item.active .badge { background: var(--accent-light); color: var(--accent); border-color: transparent; }
+
+  .friend-item { display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 10px; cursor: pointer; transition: background 0.15s; }
+  .friend-item:hover { background: var(--border); }
+
+  .avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+  .av-green { background: var(--accent-light); color: var(--accent); }
+  .av-amber { background: var(--amber-light); color: var(--amber); }
+  .av-blue { background: var(--blue-light); color: var(--blue); }
+  .friend-name { font-size: 12px; color: var(--text-2); }
+  .online-dot { width: 6px; height: 6px; border-radius: 50%; background: #4CAF50; margin-left: auto; flex-shrink: 0; }
+
+  .user-row { margin-top: auto; display: flex; align-items: center; gap: 9px; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
+  .user-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: white; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .user-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .user-sub { font-size: 11px; color: var(--text-3); }
+
+  /* ── MAIN ── */
+  .main { display: flex; flex-direction: column; overflow: hidden; }
+
+  .topbar {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface);
+  }
+
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-2);
+    background: none; border: none; cursor: pointer;
+    padding: 6px 10px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s;
+  }
+  .back-btn:hover { background: var(--surface2); }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  .topbar-divider { width: 1px; height: 18px; background: var(--border); }
+
+  .topbar-title { font-size: 14px; font-weight: 500; color: var(--text); }
+
+  /* ── CONTENT ── */
+  .content {
+    flex: 1; overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 0;
+  }
+
+  /* LEFT FORM */
+  .form-panel {
+    padding: 2rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    overflow-y: auto;
+  }
+
+  .form-section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .required { color: var(--red); font-size: 11px; }
+
+  .form-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .form-input:focus { border-color: var(--accent); background: var(--surface); }
+  .form-input::placeholder { color: var(--text-3); }
+
+  .form-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    resize: none;
+    height: 80px;
+    transition: border-color 0.15s, background 0.15s;
+    line-height: 1.5;
+  }
+  .form-textarea:focus { border-color: var(--accent); background: var(--surface); }
+  .form-textarea::placeholder { color: var(--text-3); }
+
+  .form-hint { font-size: 11px; color: var(--text-3); }
+
+  /* EMOJI / COULEUR PICKER */
+  .emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+  }
+
+  .emoji-btn {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .emoji-btn:hover { border-color: var(--accent); background: var(--accent-light); transform: scale(1.1); }
+  .emoji-btn.selected { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 0 0 2px var(--accent); }
+
+  .color-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .color-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s;
+    border: 2px solid transparent;
+    position: relative;
+  }
+  .color-dot:hover { transform: scale(1.15); }
+  .color-dot.selected { border-color: var(--text); }
+  .color-dot.selected::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+
+  /* VISIBILITÉ */
+  .visibility-options { display: flex; gap: 8px; }
+
+  .vis-option {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .vis-option:hover { border-color: #C8C3BB; background: var(--surface2); }
+  .vis-option.selected { border-color: var(--accent); background: var(--accent-light); }
+
+  .vis-option-head { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--text); }
+  .vis-option-head svg { width: 14px; height: 14px; }
+  .vis-option.selected .vis-option-head { color: var(--accent); }
+  .vis-option-desc { font-size: 11px; color: var(--text-3); line-height: 1.4; }
+
+  /* DATE BUTÉE */
+  .deadline-toggle { display: flex; align-items: center; justify-content: space-between; }
+  .toggle-label { font-size: 13px; color: var(--text-2); }
+
+  .toggle {
+    width: 36px; height: 20px;
+    border-radius: 20px;
+    background: var(--border);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: none;
+    flex-shrink: 0;
+  }
+  .toggle.on { background: var(--accent); }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle.on::after { transform: translateX(16px); }
+
+  .deadline-input-wrap { display: none; }
+  .deadline-input-wrap.visible { display: block; margin-top: 10px; }
+
+  /* ACTIONS */
+  .form-actions { display: flex; gap: 10px; padding-top: 0.5rem; margin-top: auto; }
+
+  .btn-cancel {
+    flex: 1;
+    padding: 11px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-cancel:hover { background: var(--surface2); }
+
+  .btn-create {
+    flex: 2;
+    padding: 11px;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-create:hover { opacity: 0.85; }
+  .btn-create svg { width: 14px; height: 14px; }
+
+  /* RIGHT PREVIEW */
+  .preview-panel {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: var(--surface2);
+    overflow-y: auto;
+  }
+
+  .preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-3);
+  }
+
+  .preview-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .preview-card-header {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .preview-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .preview-card-info { flex: 1; }
+  .preview-card-name { font-size: 15px; font-weight: 600; color: var(--text); font-family: 'Fraunces', serif; }
+  .preview-card-desc { font-size: 12px; color: var(--text-3); margin-top: 3px; line-height: 1.4; }
+
+  .preview-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .meta-badge {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .meta-count { font-size: 11px; color: var(--text-3); margin-left: auto; }
+
+  .preview-empty-items {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .empty-item-row {
+    height: 36px;
+    border-radius: 8px;
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .empty-dot { width: 20px; height: 20px; border-radius: 4px; background: var(--border); flex-shrink: 0; }
+  .empty-line { height: 8px; border-radius: 4px; background: var(--border); flex: 1; }
+  .empty-line.short { flex: 0 0 50px; }
+
+  .preview-hint {
+    font-size: 11px;
+    color: var(--text-3);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Sidebar nav item pour nouvelle catégorie */
+  .nav-item.new-cat {
+    color: var(--accent);
+    border: 1px dashed var(--accent);
+    opacity: 0.7;
+  }
+
+  /* Templates */
+  .template-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .template-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+  }
+  .template-card:hover { border-color: var(--accent); background: var(--accent-light); }
+  .template-card:hover .template-name { color: var(--accent); }
+
+  .template-emoji { font-size: 20px; flex-shrink: 0; }
+  .template-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .template-desc { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+
+  /* ── SUCCESS TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--text);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast svg { width: 16px; height: 16px; color: #4CAF50; }
+</style>
+</head>
+<body>
+
+<div class="app-frame">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8"><path d="M8 14s-6-4-6-8a6 6 0 0 1 12 0c0 4-6 8-6 8z"/></svg>
+      </div>
+      <span class="logo-text">Wishly</span>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Mes listes</div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 5.5h6M5 8h6M5 10.5h4"/></svg>
+        Tous les souhaits <span class="badge">24</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5.5"/><path d="M8 5.5V8l2 1.5"/></svg>
+        Ce mois-ci <span class="badge">5</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 2v2M11 2v2M2 7h12"/></svg>
+        Cette année <span class="badge">9</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 13l2-5 3.5 2.5 2-6 3.5 5"/></svg>
+        Un jour... <span class="badge">10</span>
+      </div>
+      <div class="nav-item new-cat active">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v10M3 8h10"/></svg>
+        Nouvelle liste...
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Amis</div>
+      <div class="friend-item">
+        <div class="avatar av-green">AL</div>
+        <span class="friend-name">Alice L.</span>
+        <div class="online-dot"></div>
+      </div>
+      <div class="friend-item">
+        <div class="avatar av-amber">TM</div>
+        <span class="friend-name">Thomas M.</span>
+      </div>
+      <div class="friend-item">
+        <div class="avatar av-blue">SC</div>
+        <span class="friend-name">Sara C.</span>
+        <div class="online-dot"></div>
+      </div>
+    </div>
+
+    <div class="user-row">
+      <div class="user-avatar">JD</div>
+      <div>
+        <div class="user-name">Jean Dupont</div>
+        <div class="user-sub">Profil public</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <button class="back-btn">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+        Retour
+      </button>
+      <div class="topbar-divider"></div>
+      <span class="topbar-title">Créer une nouvelle liste</span>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- FORM PANEL -->
+      <div class="form-panel">
+
+        <div class="form-section-title">Nouvelle liste</div>
+
+        <!-- TEMPLATES RAPIDES -->
+        <div class="form-group">
+          <div class="form-label">Partir d'un modèle</div>
+          <div class="template-grid">
+            <div class="template-card" onclick="applyTemplate('🗓️','Ce mois-ci','Achats urgents du mois')">
+              <span class="template-emoji">🗓️</span>
+              <div>
+                <div class="template-name">Ce mois-ci</div>
+                <div class="template-desc">Achats urgents</div>
+              </div>
+            </div>
+            <div class="template-card" onclick="applyTemplate('📅','Cette année','Mes projets pour l\'année')">
+              <span class="template-emoji">📅</span>
+              <div>
+                <div class="template-name">Cette année</div>
+                <div class="template-desc">Projets annuels</div>
+              </div>
+            </div>
+            <div class="template-card" onclick="applyTemplate('✨','Un jour...','Mes rêves sans deadline')">
+              <span class="template-emoji">✨</span>
+              <div>
+                <div class="template-name">Un jour...</div>
+                <div class="template-desc">Sans deadline</div>
+              </div>
+            </div>
+            <div class="template-card" onclick="applyTemplate('🎁','Cadeaux','Idées cadeaux pour moi')">
+              <span class="template-emoji">🎁</span>
+              <div>
+                <div class="template-name">Cadeaux</div>
+                <div class="template-desc">Idées à offrir</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;color:var(--text-3);font-size:12px;">
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+          ou personnaliser
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+        </div>
+
+        <!-- NOM -->
+        <div class="form-group">
+          <label class="form-label">
+            Nom de la liste <span class="required">*</span>
+          </label>
+          <input id="listName" class="form-input" type="text" placeholder="ex : Vacances d'été, Tech envie..." maxlength="40" oninput="updatePreview()" />
+          <span class="form-hint" id="charCount">0 / 40 caractères</span>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea id="listDesc" class="form-textarea" placeholder="Une petite description de cette liste…" oninput="updatePreview()"></textarea>
+        </div>
+
+        <!-- EMOJI + COULEUR -->
+        <div class="form-group">
+          <label class="form-label">Icône</label>
+          <div class="emoji-grid" id="emojiGrid">
+            <button class="emoji-btn selected" onclick="selectEmoji(this, '🛍️')">🛍️</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '💻')">💻</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '✈️')">✈️</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🎮')">🎮</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '📚')">📚</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🏠')">🏠</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '👗')">👗</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🎁')">🎁</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🌿')">🌿</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🎵')">🎵</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🏋️')">🏋️</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '✨')">✨</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🌍')">🌍</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🍳')">🍳</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '🎯')">🎯</button>
+            <button class="emoji-btn" onclick="selectEmoji(this, '❤️')">❤️</button>
+          </div>
+        </div>
+
+        <!-- COULEUR -->
+        <div class="form-group">
+          <label class="form-label">Couleur</label>
+          <div class="color-grid" id="colorGrid">
+            <div class="color-dot selected" style="background:#2D5A3D;" onclick="selectColor(this, '#2D5A3D', '#E8F0EB')" title="Forêt"></div>
+            <div class="color-dot" style="background:#C17B2A;" onclick="selectColor(this, '#C17B2A', '#FBF3E8')" title="Ambre"></div>
+            <div class="color-dot" style="background:#2A4A7F;" onclick="selectColor(this, '#2A4A7F', '#EAF0F8')" title="Marine"></div>
+            <div class="color-dot" style="background:#B03A2E;" onclick="selectColor(this, '#B03A2E', '#FAF0EF')" title="Bordeaux"></div>
+            <div class="color-dot" style="background:#5B3FA6;" onclick="selectColor(this, '#5B3FA6', '#F0EDFB')" title="Violet"></div>
+            <div class="color-dot" style="background:#A6365B;" onclick="selectColor(this, '#A6365B', '#FAEDF2')" title="Rose"></div>
+            <div class="color-dot" style="background:#1A1814;" onclick="selectColor(this, '#1A1814', '#F0EDE6')" title="Ardoise"></div>
+            <div class="color-dot" style="background:#6B6560;" onclick="selectColor(this, '#6B6560', '#F7F5F0')" title="Gris"></div>
+          </div>
+        </div>
+
+        <!-- VISIBILITÉ -->
+        <div class="form-group">
+          <label class="form-label">Visibilité</label>
+          <div class="visibility-options">
+            <div class="vis-option selected" id="vis-public" onclick="selectVis('public')">
+              <div class="vis-option-head">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2a10 10 0 0 1 0 12M8 2a10 10 0 0 0 0 12"/></svg>
+                Publique
+              </div>
+              <div class="vis-option-desc">Visible par vos amis sur Wishly</div>
+            </div>
+            <div class="vis-option" id="vis-friends" onclick="selectVis('friends')">
+              <div class="vis-option-head">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><path d="M1 13c0-2.8 2.2-5 5-5"/><circle cx="11" cy="7" r="2"/><path d="M8.5 13c0-2 1.1-3.5 2.5-3.5S14 11 14 13"/></svg>
+                Amis only
+              </div>
+              <div class="vis-option-desc">Seulement vos amis ajoutés</div>
+            </div>
+            <div class="vis-option" id="vis-private" onclick="selectVis('private')">
+              <div class="vis-option-head">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
+                Privée
+              </div>
+              <div class="vis-option-desc">Visible par vous seulement</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DATE LIMITE -->
+        <div class="form-group">
+          <div class="deadline-toggle">
+            <span class="toggle-label">Ajouter une date limite</span>
+            <button class="toggle" id="deadlineToggle" onclick="toggleDeadline()"></button>
+          </div>
+          <div class="deadline-input-wrap" id="deadlineWrap">
+            <input class="form-input" type="date" id="deadlineDate" />
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="form-actions">
+          <button class="btn-cancel">Annuler</button>
+          <button class="btn-create" onclick="createList()">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-8"/></svg>
+            Créer la liste
+          </button>
+        </div>
+
+      </div>
+
+      <!-- PREVIEW PANEL -->
+      <div class="preview-panel">
+        <div class="preview-label">Aperçu en direct</div>
+
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <div class="preview-icon" id="previewIcon" style="background:#E8F0EB;">🛍️</div>
+            <div class="preview-card-info">
+              <div class="preview-card-name" id="previewName">Nom de la liste</div>
+              <div class="preview-card-desc" id="previewDesc">Ajoutez une description…</div>
+            </div>
+          </div>
+          <div class="preview-card-meta">
+            <span class="meta-badge" id="previewBadge" style="background:#E8F0EB;color:#2D5A3D;">Publique</span>
+            <span class="meta-badge" id="previewDeadline" style="display:none;background:#FBF3E8;color:#C17B2A;">Sans deadline</span>
+            <span class="meta-count">0 article</span>
+          </div>
+          <div class="preview-empty-items">
+            <div class="empty-item-row">
+              <div class="empty-dot"></div>
+              <div class="empty-line"></div>
+              <div class="empty-line short"></div>
+            </div>
+            <div class="empty-item-row">
+              <div class="empty-dot"></div>
+              <div class="empty-line"></div>
+              <div class="empty-line short"></div>
+            </div>
+            <div class="empty-item-row">
+              <div class="empty-dot"></div>
+              <div class="empty-line"></div>
+              <div class="empty-line short"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APERÇU SIDEBAR -->
+        <div style="margin-top:0.5rem;">
+          <div class="preview-label" style="margin-bottom:10px;">Dans la sidebar</div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
+            <div class="nav-item" style="pointer-events:none;">
+              <span id="previewSidebarIcon" style="font-size:14px;width:16px;text-align:center;flex-shrink:0;">🛍️</span>
+              <span id="previewSidebarName" style="font-size:13px;color:var(--text-2);">Nom de la liste</span>
+              <span class="badge">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-hint">
+          La liste apparaîtra dans votre sidebar<br>dès sa création.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-8"/></svg>
+  Liste créée avec succès !
+</div>
+
+<script>
+  let selectedEmoji = '🛍️';
+  let selectedColor = '#2D5A3D';
+  let selectedColorLight = '#E8F0EB';
+  let selectedVis = 'public';
+  let deadlineOn = false;
+
+  const visLabels = { public: 'Publique', friends: 'Amis only', private: 'Privée' };
+
+  function updatePreview() {
+    const name = document.getElementById('listName').value;
+    const desc = document.getElementById('listDesc').value;
+    const count = name.length;
+
+    document.getElementById('charCount').textContent = `${count} / 40 caractères`;
+    document.getElementById('previewName').textContent = name || 'Nom de la liste';
+    document.getElementById('previewDesc').textContent = desc || 'Ajoutez une description…';
+    document.getElementById('previewSidebarName').textContent = name || 'Nom de la liste';
+  }
+
+  function selectEmoji(btn, emoji) {
+    document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedEmoji = emoji;
+    document.getElementById('previewIcon').textContent = emoji;
+    document.getElementById('previewSidebarIcon').textContent = emoji;
+  }
+
+  function selectColor(dot, color, light) {
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+    dot.classList.add('selected');
+    selectedColor = color;
+    selectedColorLight = light;
+    document.getElementById('previewIcon').style.background = light;
+    document.getElementById('previewBadge').style.background = light;
+    document.getElementById('previewBadge').style.color = color;
+  }
+
+  function selectVis(vis) {
+    selectedVis = vis;
+    ['public','friends','private'].forEach(v => {
+      document.getElementById('vis-' + v).classList.toggle('selected', v === vis);
+    });
+    document.getElementById('previewBadge').textContent = visLabels[vis];
+  }
+
+  function toggleDeadline() {
+    deadlineOn = !deadlineOn;
+    const toggle = document.getElementById('deadlineToggle');
+    const wrap = document.getElementById('deadlineWrap');
+    const badge = document.getElementById('previewDeadline');
+    toggle.classList.toggle('on', deadlineOn);
+    wrap.classList.toggle('visible', deadlineOn);
+    badge.style.display = deadlineOn ? 'inline-block' : 'none';
+    if (deadlineOn) {
+      document.getElementById('deadlineDate').addEventListener('change', function() {
+        const d = new Date(this.value);
+        badge.textContent = '📅 ' + d.toLocaleDateString('fr-FR', { day:'numeric', month:'short', year:'numeric' });
+      });
+    }
+  }
+
+  function applyTemplate(emoji, name, desc) {
+    document.getElementById('listName').value = name;
+    document.getElementById('listDesc').value = desc;
+    // select emoji
+    const btns = document.querySelectorAll('.emoji-btn');
+    btns.forEach(b => {
+      if (b.textContent === emoji) selectEmoji(b, emoji);
+    });
+    updatePreview();
+  }
+
+  function createList() {
+    const name = document.getElementById('listName').value.trim();
+    if (!name) {
+      document.getElementById('listName').style.borderColor = 'var(--red)';
+      document.getElementById('listName').focus();
+      return;
+    }
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // Init
+  updatePreview();
+</script>
+
+</body>
+</html>

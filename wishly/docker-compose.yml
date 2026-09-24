@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      MONGO_URI: mongodb://mongodb:27017
+      MONGO_DB: wishly
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: wishly_secret_key_2026
+      GOOGLE_CLIENT_ID: 392297769489-mge1kgjv7jgn2a0vnpdrv0bfmlts6g8o.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: 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
+      INTERNAL_API_URL: http://backend:8000
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

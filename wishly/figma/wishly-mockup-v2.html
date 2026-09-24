@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishly — Maquette v2</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+  --bg: #F6F6F8;
+  --surface: #FFFFFF;
+  --surface2: #EFEFF3;
+  --border: #D9D9E0;
+  --text: #141418;
+  --text-2: #5E5E66;
+  --text-3: #A4A4AE;
+  --accent: #D64550;
+  --accent-light: #FBE8EA;
+  --amber: #E39A2F;
+  --amber-light: #FFF2E1;
+  --blue: #3A57D1;
+  --blue-light: #E8ECFB;
+}
+
+
+
+
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .app-frame {
+    width: 100%;
+    max-width: 1100px;
+    height: 700px;
+    background: var(--surface);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--surface2);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; padding: 0 0.25rem; }
+  .logo-mark {
+    width: 30px; height: 30px; background: var(--accent);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 16px; height: 16px; }
+  .logo-text { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+
+  .nav-group { display: flex; flex-direction: column; gap: 2px; }
+  .nav-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); padding: 0 0.5rem; margin-bottom: 6px; }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 9px; padding: 8px 10px;
+    border-radius: 10px; font-size: 13px; color: var(--text-2); cursor: pointer; transition: background 0.15s;
+  }
+  .nav-item:hover { background: var(--border); }
+  .nav-item.active { background: var(--surface); color: var(--text); font-weight: 500; border: 1px solid var(--border); }
+  .nav-icon { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
+  .nav-item.active .nav-icon { opacity: 1; }
+
+  .badge {
+    margin-left: auto; font-size: 11px; font-weight: 500;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-3); border-radius: 20px; padding: 1px 7px; min-width: 22px; text-align: center;
+  }
+  .nav-item.active .badge { background: var(--accent-light); color: var(--accent); border-color: transparent; }
+
+  .friend-item {
+    display: flex; align-items: center; gap: 9px; padding: 7px 10px;
+    border-radius: 10px; cursor: pointer; transition: background 0.15s;
+  }
+  .friend-item:hover { background: var(--border); }
+
+  .avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; flex-shrink: 0;
+  }
+  .av-green { background: var(--accent-light); color: var(--accent); }
+  .av-amber { background: var(--amber-light); color: var(--amber); }
+  .av-blue { background: var(--blue-light); color: var(--blue); }
+  .friend-name { font-size: 12px; color: var(--text-2); }
+  .online-dot { width: 6px; height: 6px; border-radius: 50%; background: #4CAF50; margin-left: auto; flex-shrink: 0; }
+
+  .user-row {
+    margin-top: auto; display: flex; align-items: center; gap: 9px; padding: 10px;
+    border-radius: 10px; border: 1px solid var(--border); background: var(--surface);
+  }
+  .user-avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--accent);
+    color: white; font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .user-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .user-sub { font-size: 11px; color: var(--text-3); }
+
+  /* MAIN */
+  .main { display: flex; flex-direction: column; overflow: hidden; position: relative; }
+
+  /* TOPBAR + SEARCH */
+  .topbar {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface);
+    position: relative;
+    z-index: 100;
+  }
+
+  .search-wrap { flex: 1; position: relative; }
+
+  .search-box-input {
+    width: 100%;
+    padding: 9px 14px 9px 38px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s, border-radius 0.15s;
+  }
+
+  .search-box-input:focus {
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  /* Quand résultats visibles, arrondir seulement en haut */
+  .search-wrap.open .search-box-input {
+    border-radius: 10px 10px 0 0;
+    border-bottom-color: transparent;
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  .search-icon-svg {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; color: var(--text-3); pointer-events: none;
+  }
+
+  /* DROPDOWN RÉSULTATS */
+  .search-results {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    z-index: 200;
+  }
+
+  .search-wrap.open .search-results { display: block; }
+
+  .results-header {
+    padding: 8px 14px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-3);
+  }
+
+  .results-header svg { width: 12px; height: 12px; }
+
+  .google-badge {
+    display: flex; align-items: center; gap: 4px;
+    margin-left: auto;
+    font-size: 10px; color: var(--text-3);
+  }
+
+  .google-g {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: linear-gradient(135deg, #4285F4 0%, #34A853 33%, #FBBC05 66%, #EA4335 100%);
+    display: inline-block; flex-shrink: 0;
+  }
+
+  .result-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+
+  .result-item:last-child { border-bottom: none; }
+  .result-item:hover { background: var(--surface2); }
+
+  .result-thumb {
+    width: 44px; height: 44px; border-radius: 8px;
+    background: var(--surface2); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .result-thumb svg { width: 22px; height: 22px; opacity: 0.4; }
+
+  .result-info { flex: 1; min-width: 0; }
+  .result-name { font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .result-source { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+  .result-price {
+    font-size: 13px; font-weight: 500; color: var(--text-2);
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  .result-add {
+    padding: 5px 11px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+
+  .result-add:hover { opacity: 0.8; }
+
+  .results-footer {
+    padding: 8px 14px;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-3);
+    text-align: center;
+  }
+
+  /* CONTENT */
+  .content { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.75rem; }
+
+  .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .section-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+
+  .btn-ghost {
+    padding: 6px 12px; background: transparent; border: 1px solid var(--border);
+    border-radius: 8px; font-size: 12px; font-family: 'DM Sans', sans-serif;
+    color: var(--text-2); cursor: pointer; transition: background 0.15s;
+  }
+  .btn-ghost:hover { background: var(--surface2); }
+
+  .cats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+
+  .cat-pill {
+    padding: 5px 13px; border-radius: 20px; font-size: 12px; cursor: pointer;
+    border: 1px solid var(--border); color: var(--text-2); background: transparent;
+    font-family: 'DM Sans', sans-serif; transition: all 0.15s;
+  }
+  .cat-pill:hover { background: var(--surface2); }
+  .cat-pill.active { background: var(--accent); color: white; border-color: transparent; font-weight: 500; }
+
+  .items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  .item-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; cursor: pointer;
+  }
+  .item-card:hover { border-color: #C8C3BB; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+  .item-thumb { height: 90px; background: var(--surface2); display: flex; align-items: center; justify-content: center; }
+  .item-thumb svg { width: 36px; height: 36px; opacity: 0.35; }
+  .item-body { padding: 12px; }
+  .item-name { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+  .item-price { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+
+  .cat-tag { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+  .tag-month { background: var(--accent-light); color: var(--accent); }
+  .tag-year { background: var(--amber-light); color: var(--amber); }
+  .tag-someday { background: var(--blue-light); color: var(--blue); }
+
+  .friends-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+
+  .friend-card {
+    flex-shrink: 0; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 14px 16px; display: flex; align-items: center;
+    gap: 12px; min-width: 185px; cursor: pointer; transition: border-color 0.15s;
+  }
+  .friend-card:hover { border-color: #C8C3BB; }
+
+  .friend-av {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0;
+  }
+  .friend-fname { font-size: 13px; font-weight: 500; color: var(--text); }
+  .friend-sub { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+  .online { width: 8px; height: 8px; border-radius: 50%; background: #4CAF50; flex-shrink: 0; }
+
+  /* ANNOTATION CALLOUT */
+  .callout {
+    background: #FFFBF0;
+    border: 1px solid #F0D080;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #7A5C10;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .callout svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+
+<div class="app-frame">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8"><path d="M8 14s-6-4-6-8a6 6 0 0 1 12 0c0 4-6 8-6 8z"/></svg>
+      </div>
+      <span class="logo-text">Wishly</span>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Mes listes</div>
+      <div class="nav-item active">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 5.5h6M5 8h6M5 10.5h4"/></svg>
+        Tous les souhaits <span class="badge">24</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5.5"/><path d="M8 5.5V8l2 1.5"/></svg>
+        Ce mois-ci <span class="badge">5</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 2v2M11 2v2M2 7h12"/></svg>
+        Cette année <span class="badge">9</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 13l2-5 3.5 2.5 2-6 3.5 5"/></svg>
+        Un jour... <span class="badge">10</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Amis</div>
+      <div class="friend-item">
+        <div class="avatar av-green">AL</div>
+        <span class="friend-name">Alice L.</span>
+        <div class="online-dot"></div>
+      </div>
+      <div class="friend-item">
+        <div class="avatar av-amber">TM</div>
+        <span class="friend-name">Thomas M.</span>
+      </div>
+      <div class="friend-item">
+        <div class="avatar av-blue">SC</div>
+        <span class="friend-name">Sara C.</span>
+        <div class="online-dot"></div>
+      </div>
+      <div class="friend-item" style="color:var(--text-3);font-size:12px;padding-left:10px;">+ Ajouter un ami</div>
+    </div>
+
+    <div class="user-row">
+      <div class="user-avatar">JD</div>
+      <div>
+        <div class="user-name">Jean Dupont</div>
+        <div class="user-sub">Profil public</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+
+      <!-- SEARCH + DROPDOWN -->
+      <div class="search-wrap open" id="searchWrap">
+        <svg class="search-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="6.5" cy="6.5" r="4.5"/><path d="M11 11l3 3"/>
+        </svg>
+        <input
+          class="search-box-input"
+          type="text"
+          id="searchInput"
+          placeholder="Rechercher un article à ajouter…"
+          value="Sony casque audio"
+          onfocus="document.getElementById('searchWrap').classList.add('open')"
+        />
+
+        <!-- DROPDOWN RÉSULTATS GOOGLE -->
+        <div class="search-results">
+          <div class="results-header">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M11 11l3 3"/></svg>
+            Résultats pour "Sony casque audio"
+            <div class="google-badge">
+              <div class="google-g"></div>
+              via Google
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M6 14h24v14a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V14z"/><path d="M10 14v-3a8 8 0 0 1 16 0v3"/></svg>
+            </div>
+            <div class="result-info">
+              <div class="result-name">Sony WH-1000XM5 — Casque sans fil</div>
+              <div class="result-source">sony.com · Réduction bruit active</div>
+            </div>
+            <div class="result-price">329 €</div>
+            <button class="result-add">+ Ajouter</button>
+          </div>
+
+          <div class="result-item">
+            <div class="result-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M6 14h24v14a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V14z"/><path d="M10 14v-3a8 8 0 0 1 16 0v3"/></svg>
+            </div>
+            <div class="result-info">
+              <div class="result-name">Sony WH-1000XM4 — Casque premium</div>
+              <div class="result-source">fnac.com · Bluetooth 5.0</div>
+            </div>
+            <div class="result-price">229 €</div>
+            <button class="result-add">+ Ajouter</button>
+          </div>
+
+          <div class="result-item">
+            <div class="result-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M18 8a10 10 0 0 0-10 10v4h4v-4a6 6 0 0 1 12 0v4h4v-4A10 10 0 0 0 18 8z"/></svg>
+            </div>
+            <div class="result-info">
+              <div class="result-name">Sony WF-1000XM5 — Écouteurs intra</div>
+              <div class="result-source">amazon.fr · True Wireless</div>
+            </div>
+            <div class="result-price">259 €</div>
+            <button class="result-add">+ Ajouter</button>
+          </div>
+
+          <div class="results-footer">
+            3 résultats affichés · 97 requêtes restantes aujourd'hui
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content" onclick="document.getElementById('searchWrap').classList.remove('open')">
+
+      <div class="callout">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+        La barre de recherche appelle l'API Google Custom Search et affiche les résultats dans le dropdown. L'utilisateur clique "+ Ajouter" pour l'enregistrer dans sa wishlist.
+      </div>
+
+      <div>
+        <div class="section-head">
+          <span class="section-title">Mes souhaits</span>
+          <button class="btn-ghost">+ Nouvelle catégorie</button>
+        </div>
+        <div class="cats">
+          <div class="cat-pill active">Tous (24)</div>
+          <div class="cat-pill">Ce mois-ci (5)</div>
+          <div class="cat-pill">Cette année (9)</div>
+          <div class="cat-pill">Un jour… (10)</div>
+        </div>
+        <div class="items-grid">
+          <div class="item-card">
+            <div class="item-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><path d="M6 14h24v14a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V14z"/><path d="M10 14v-3a8 8 0 0 1 16 0v3"/><circle cx="18" cy="22" r="2"/></svg>
+            </div>
+            <div class="item-body">
+              <div class="item-name">Sony WH-1000XM5</div>
+              <div class="item-price">329 €</div>
+              <span class="cat-tag tag-month">Ce mois-ci</span>
+            </div>
+          </div>
+          <div class="item-card">
+            <div class="item-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><rect x="7" y="5" width="22" height="28" rx="3"/><path d="M12 12h12M12 17h12M12 22h8"/></svg>
+            </div>
+            <div class="item-body">
+              <div class="item-name">iPad Pro M4 11"</div>
+              <div class="item-price">1 099 €</div>
+              <span class="cat-tag tag-year">Cette année</span>
+            </div>
+          </div>
+          <div class="item-card">
+            <div class="item-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><circle cx="18" cy="18" r="12"/><path d="M18 10v8l5 3"/></svg>
+            </div>
+            <div class="item-body">
+              <div class="item-name">Garmin Fenix 8</div>
+              <div class="item-price">899 €</div>
+              <span class="cat-tag tag-someday">Un jour…</span>
+            </div>
+          </div>
+          <div class="item-card">
+            <div class="item-thumb">
+              <svg viewBox="0 0 36 36" fill="none" stroke="var(--text)" stroke-width="1.5"><rect x="4" y="8" width="28" height="18" rx="2"/><path d="M13 26v3M23 26v3M10 29h16"/></svg>
+            </div>
+            <div class="item-body">
+              <div class="item-name">LG OLED 55" C4</div>
+              <div class="item-price">1 299 €</div>
+              <span class="cat-tag tag-someday">Un jour…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-head">
+          <span class="section-title">Wishlists de mes amis</span>
+          <button class="btn-ghost">Voir tout</button>
+        </div>
+        <div class="friends-row">
+          <div class="friend-card">
+            <div class="friend-av" style="background:var(--accent-light);color:var(--accent);">AL</div>
+            <div>
+              <div class="friend-fname">Alice L.</div>
+              <div class="friend-sub">12 souhaits · publique</div>
+            </div>
+            <div class="online"></div>
+          </div>
+          <div class="friend-card">
+            <div class="friend-av" style="background:var(--amber-light);color:var(--amber);">TM</div>
+            <div>
+              <div class="friend-fname">Thomas M.</div>
+              <div class="friend-sub">7 souhaits · publique</div>
+            </div>
+          </div>
+          <div class="friend-card">
+            <div class="friend-av" style="background:var(--blue-light);color:var(--blue);">SC</div>
+            <div>
+              <div class="friend-fname">Sara C.</div>
+              <div class="friend-sub">18 souhaits · publique</div>
+            </div>
+            <div class="online"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const input = document.getElementById('searchInput');
+  const wrap = document.getElementById('searchWrap');
+
+  input.addEventListener('focus', () => wrap.classList.add('open'));
+
+  document.addEventListener('click', (e) => {
+    if (!wrap.contains(e.target)) wrap.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

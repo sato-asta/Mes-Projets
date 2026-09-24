@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================
+   Theme semantic CSS variables
+   =========================== */
+:root {
+  --color-bg: #F6F6F8;
+  --color-surface: #FFFFFF;
+  --color-surface2: #EFEFF3;
+  --color-border: #D9D9E0;
+  --color-text: #141418;
+  --color-text-2: #5E5E66;
+  --color-text-3: #A4A4AE;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-bg: #111118;
+  --color-surface: #1A1A22;
+  --color-surface2: #22222C;
+  --color-border: #2E2E3A;
+  --color-text: #EDEDF3;
+  --color-text-2: #9898A4;
+  --color-text-3: #606070;
+}
+
+:root {
+  /* Primary Colors */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c3d66;
+
+  /* Neutral Colors */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+
+  /* Success */
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+
+  /* Error */
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+
+  /* Warning */
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+
+  /* Animations */
+  --animate-spin: spin 1s linear infinite;
+}
+
+/* ============================================
+   Dark mode global overrides
+   Cible les classes Tailwind arbitraires codées
+   en dur dans les pages et composants
+   ============================================ */
+html.dark body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.dark .bg-white {
+  background-color: var(--color-surface);
+}
+
+html.dark .bg-\[\#f6f6f8\],
+html.dark .bg-\[\#F6F6F8\] {
+  background-color: var(--color-bg);
+}
+
+html.dark .bg-\[\#efeff3\],
+html.dark .bg-\[\#EFEFF3\] {
+  background-color: var(--color-surface2);
+}
+
+html.dark .bg-\[\#d9d9e0\],
+html.dark .bg-\[\#D9D9E0\] {
+  background-color: var(--color-border);
+}
+
+html.dark .border-\[\#d9d9e0\],
+html.dark .border-\[\#D9D9E0\] {
+  border-color: var(--color-border);
+}
+
+html.dark .text-\[\#141418\] {
+  color: var(--color-text);
+}
+
+html.dark .text-\[\#5e5e66\],
+html.dark .text-\[\#5E5E66\] {
+  color: var(--color-text-2);
+}
+
+html.dark .text-\[\#a4a4ae\],
+html.dark .text-\[\#A4A4AE\] {
+  color: var(--color-text-3);
+}
+
+html.dark input,
+html.dark textarea {
+  color: var(--color-text);
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: var(--color-text-3);
+}
+
+html.dark .focus\:bg-white:focus {
+  background-color: var(--color-surface);
+}
+
+html.dark .hover\:bg-\[\#f6f6f8\]:hover {
+  background-color: var(--color-surface2);
+}
+
+html.dark .hover\:bg-\[\#d9d9e0\]:hover {
+  background-color: var(--color-border);
+}
+
+@layer base {
+  body {
+    @apply font-sans text-neutral-900 bg-white;
+  }
+
+  h1 {
+    @apply text-4xl font-bold text-neutral-900 mb-4;
+  }
+
+  h2 {
+    @apply text-3xl font-bold text-neutral-900 mb-3;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold text-neutral-900 mb-2;
+  }
+
+  p {
+    @apply text-base leading-relaxed text-neutral-700;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    @apply appearance-none bg-transparent border-0 outline-none;
+  }
+}
+
+@layer components {
+  .container-max {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 text-white hover:bg-primary-600;
+  }
+
+  .btn-secondary {
+    @apply btn bg-neutral-200 text-neutral-900 hover:bg-neutral-300;
+  }
+
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+/* Utility Animations */
+.animate-fade-in {
+  animation: fade-in 1s var(--animation-delay, 0s) ease forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 1s var(--animation-delay, 0s) ease forwards;
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) infinite linear;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 8s infinite;
+}
+
+.animate-spin {
+  animation: var(--animate-spin);
+}
+
+/* Keyframes */
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes image-glow {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.74, 0.25, 0.76, 1);
+  }
+
+  10% {
+    opacity: 0.7;
+    animation-timing-function: cubic-bezier(0.12, 0.01, 0.08, 0.99);
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  90%,
+  to {
+    background-position: calc(-100% - var(--shimmer-width)) 0;
+  }
+
+  30%,
+  60% {
+    background-position: calc(100% + var(--shimmer-width)) 0;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
