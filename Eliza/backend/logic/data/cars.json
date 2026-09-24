@@ -1,0 +1,430 @@
+{
+  "marques": {
+    "ferrari": {
+      "origine": "Italie",
+      "fondation": 1939,
+      "fondateur": "Enzo Ferrari",
+      "segment": "supercar",
+      "caracteristique": "Performance extrême, design iconique, symbole du luxe sportif",
+      "modeles": {
+        "488 GTB": {
+          "annee": 2015,
+          "moteur": "V8 3.9L Turbo",
+          "puissance": "670 ch",
+          "0_100": "3.0s",
+          "vitesse_max": "330 km/h",
+          "prix": "230 000 €",
+          "type": "supercar"
+        },
+        "F40": {
+          "annee": 1987,
+          "moteur": "V8 2.9L Biturbo",
+          "puissance": "478 ch",
+          "0_100": "3.9s",
+          "vitesse_max": "324 km/h",
+          "prix": "1 500 000 € (collection)",
+          "type": "supercar légendaire"
+        },
+        "SF90 Stradale": {
+          "annee": 2019,
+          "moteur": "V8 4.0L Hybride",
+          "puissance": "1000 ch",
+          "0_100": "2.5s",
+          "vitesse_max": "340 km/h",
+          "prix": "500 000 €",
+          "type": "hypercar hybride"
+        },
+        "Roma": {
+          "annee": 2020,
+          "moteur": "V8 3.9L Turbo",
+          "puissance": "620 ch",
+          "0_100": "3.4s",
+          "vitesse_max": "320 km/h",
+          "prix": "220 000 €",
+          "type": "GT sportive"
+        }
+      }
+    },
+    "lamborghini": {
+      "origine": "Italie",
+      "fondation": 1963,
+      "fondateur": "Ferruccio Lamborghini",
+      "segment": "supercar",
+      "caracteristique": "Design agressif, moteurs atmosphériques puissants, style extravagant",
+      "modeles": {
+        "Huracán": {
+          "annee": 2014,
+          "moteur": "V10 5.2L",
+          "puissance": "640 ch",
+          "0_100": "2.9s",
+          "vitesse_max": "325 km/h",
+          "prix": "200 000 €",
+          "type": "supercar"
+        },
+        "Urus": {
+          "annee": 2018,
+          "moteur": "V8 4.0L Biturbo",
+          "puissance": "650 ch",
+          "0_100": "3.6s",
+          "vitesse_max": "305 km/h",
+          "prix": "230 000 €",
+          "type": "SUV sportif"
+        },
+        "Revuelto": {
+          "annee": 2023,
+          "moteur": "V12 6.5L Hybride",
+          "puissance": "1015 ch",
+          "0_100": "2.5s",
+          "vitesse_max": "350 km/h",
+          "prix": "500 000 €",
+          "type": "hypercar"
+        }
+      }
+    },
+    "porsche": {
+      "origine": "Allemagne",
+      "fondation": 1931,
+      "fondateur": "Ferdinand Porsche",
+      "segment": "sportive premium",
+      "caracteristique": "Alliance parfaite entre confort quotidien et performance sportive",
+      "modeles": {
+        "911 Carrera": {
+          "annee": 1963,
+          "moteur": "Flat-6 3.0L Turbo",
+          "puissance": "450 ch",
+          "0_100": "3.5s",
+          "vitesse_max": "308 km/h",
+          "prix": "130 000 €",
+          "type": "sportive iconique"
+        },
+        "Cayenne": {
+          "annee": 2002,
+          "moteur": "V6 3.0L Turbo",
+          "puissance": "340 ch",
+          "0_100": "5.9s",
+          "vitesse_max": "253 km/h",
+          "prix": "80 000 €",
+          "type": "SUV premium"
+        },
+        "Taycan": {
+          "annee": 2019,
+          "moteur": "Électrique double moteur",
+          "puissance": "571 ch",
+          "0_100": "3.8s",
+          "vitesse_max": "260 km/h",
+          "prix": "90 000 €",
+          "type": "sportive électrique"
+        },
+        "Panamera": {
+          "annee": 2009,
+          "moteur": "V6 2.9L Biturbo",
+          "puissance": "330 ch",
+          "0_100": "5.3s",
+          "vitesse_max": "270 km/h",
+          "prix": "95 000 €",
+          "type": "berline sportive"
+        }
+      }
+    },
+    "bmw": {
+      "origine": "Allemagne",
+      "fondation": 1916,
+      "fondateur": "Franz Josef Popp",
+      "segment": "premium / sportive",
+      "caracteristique": "Le plaisir de conduire, mécanique précise et technologie avancée",
+      "modeles": {
+        "M3": {
+          "annee": 1986,
+          "moteur": "L6 3.0L Biturbo",
+          "puissance": "510 ch",
+          "0_100": "3.5s",
+          "vitesse_max": "290 km/h",
+          "prix": "90 000 €",
+          "type": "berline sportive"
+        },
+        "M5": {
+          "annee": 1984,
+          "moteur": "V8 4.4L Biturbo",
+          "puissance": "625 ch",
+          "0_100": "3.3s",
+          "vitesse_max": "305 km/h",
+          "prix": "130 000 €",
+          "type": "berline haute performance"
+        },
+        "Série 3": {
+          "annee": 1975,
+          "moteur": "L4 2.0L Turbo",
+          "puissance": "184 ch",
+          "0_100": "7.1s",
+          "vitesse_max": "235 km/h",
+          "prix": "45 000 €",
+          "type": "berline compacte"
+        },
+        "X5": {
+          "annee": 1999,
+          "moteur": "L6 3.0L Turbo",
+          "puissance": "340 ch",
+          "0_100": "5.5s",
+          "vitesse_max": "250 km/h",
+          "prix": "80 000 €",
+          "type": "SUV premium"
+        }
+      }
+    },
+    "mercedes": {
+      "origine": "Allemagne",
+      "fondation": 1926,
+      "fondateur": "Karl Benz / Gottlieb Daimler",
+      "segment": "luxe / premium",
+      "caracteristique": "Luxe, confort et innovation technologique depuis plus d'un siècle",
+      "modeles": {
+        "AMG GT": {
+          "annee": 2014,
+          "moteur": "V8 4.0L Biturbo",
+          "puissance": "585 ch",
+          "0_100": "3.7s",
+          "vitesse_max": "318 km/h",
+          "prix": "150 000 €",
+          "type": "supercar GT"
+        },
+        "Classe C": {
+          "annee": 1993,
+          "moteur": "L4 2.0L Turbo",
+          "puissance": "204 ch",
+          "0_100": "7.3s",
+          "vitesse_max": "240 km/h",
+          "prix": "48 000 €",
+          "type": "berline compacte"
+        },
+        "GLE": {
+          "annee": 1997,
+          "moteur": "L6 3.0L Turbo",
+          "puissance": "367 ch",
+          "0_100": "5.7s",
+          "vitesse_max": "250 km/h",
+          "prix": "85 000 €",
+          "type": "SUV premium"
+        },
+        "Classe S": {
+          "annee": 1972,
+          "moteur": "L6 3.0L Biturbo",
+          "puissance": "435 ch",
+          "0_100": "4.9s",
+          "vitesse_max": "250 km/h",
+          "prix": "115 000 €",
+          "type": "berline de luxe"
+        }
+      }
+    },
+    "audi": {
+      "origine": "Allemagne",
+      "fondation": 1909,
+      "fondateur": "August Horch",
+      "segment": "premium",
+      "caracteristique": "Technologie Quattro (4 roues motrices), intérieur raffiné, fiabilité allemande",
+      "modeles": {
+        "R8": {
+          "annee": 2006,
+          "moteur": "V10 5.2L",
+          "puissance": "620 ch",
+          "0_100": "3.1s",
+          "vitesse_max": "331 km/h",
+          "prix": "185 000 €",
+          "type": "supercar"
+        },
+        "RS6": {
+          "annee": 2002,
+          "moteur": "V8 4.0L Biturbo",
+          "puissance": "630 ch",
+          "0_100": "3.4s",
+          "vitesse_max": "280 km/h",
+          "prix": "130 000 €",
+          "type": "break sportif"
+        },
+        "A4": {
+          "annee": 1994,
+          "moteur": "L4 2.0L TFSI",
+          "puissance": "190 ch",
+          "0_100": "7.3s",
+          "vitesse_max": "237 km/h",
+          "prix": "45 000 €",
+          "type": "berline compacte"
+        },
+        "Q7": {
+          "annee": 2005,
+          "moteur": "V6 3.0L TFSI",
+          "puissance": "340 ch",
+          "0_100": "5.9s",
+          "vitesse_max": "250 km/h",
+          "prix": "80 000 €",
+          "type": "SUV premium"
+        }
+      }
+    },
+    "tesla": {
+      "origine": "États-Unis",
+      "fondation": 2003,
+      "fondateur": "Elon Musk / Martin Eberhard",
+      "segment": "électrique premium",
+      "caracteristique": "Pionnier du véhicule électrique, Autopilot, mises à jour OTA",
+      "modeles": {
+        "Model S Plaid": {
+          "annee": 2021,
+          "moteur": "Électrique tri-moteur",
+          "puissance": "1020 ch",
+          "0_100": "2.1s",
+          "vitesse_max": "322 km/h",
+          "autonomie": "600 km",
+          "prix": "130 000 €",
+          "type": "berline électrique haute performance"
+        },
+        "Model 3": {
+          "annee": 2017,
+          "moteur": "Électrique double moteur",
+          "puissance": "346 ch",
+          "0_100": "4.4s",
+          "vitesse_max": "225 km/h",
+          "autonomie": "576 km",
+          "prix": "45 000 €",
+          "type": "berline électrique"
+        },
+        "Model X": {
+          "annee": 2015,
+          "moteur": "Électrique double moteur",
+          "puissance": "670 ch",
+          "0_100": "3.9s",
+          "vitesse_max": "250 km/h",
+          "autonomie": "560 km",
+          "prix": "110 000 €",
+          "type": "SUV électrique"
+        },
+        "Cybertruck": {
+          "annee": 2023,
+          "moteur": "Électrique tri-moteur",
+          "puissance": "845 ch",
+          "0_100": "2.6s",
+          "vitesse_max": "209 km/h",
+          "autonomie": "500 km",
+          "prix": "80 000 €",
+          "type": "pick-up électrique"
+        }
+      }
+    },
+    "bugatti": {
+      "origine": "France / Italie",
+      "fondation": 1909,
+      "fondateur": "Ettore Bugatti",
+      "segment": "hypercar",
+      "caracteristique": "Les voitures les plus rapides et chères du monde, artisanat exceptionnel",
+      "modeles": {
+        "Chiron": {
+          "annee": 2016,
+          "moteur": "W16 8.0L Quad-Turbo",
+          "puissance": "1500 ch",
+          "0_100": "2.4s",
+          "vitesse_max": "420 km/h",
+          "prix": "3 000 000 €",
+          "type": "hypercar"
+        },
+        "Veyron": {
+          "annee": 2005,
+          "moteur": "W16 8.0L Quad-Turbo",
+          "puissance": "1001 ch",
+          "0_100": "2.5s",
+          "vitesse_max": "407 km/h",
+          "prix": "1 500 000 €",
+          "type": "hypercar légendaire"
+        },
+        "Tourbillon": {
+          "annee": 2024,
+          "moteur": "V16 Hybride",
+          "puissance": "1800 ch",
+          "0_100": "2.0s",
+          "vitesse_max": "445 km/h",
+          "prix": "3 800 000 €",
+          "type": "hypercar nouvelle génération"
+        }
+      }
+    },
+    "renault": {
+      "origine": "France",
+      "fondation": 1899,
+      "fondateur": "Louis Renault",
+      "segment": "généraliste / sportif",
+      "caracteristique": "Marque française populaire, gamme variée du citadin au sportif",
+      "modeles": {
+        "Mégane RS": {
+          "annee": 1999,
+          "moteur": "L4 1.8L Turbo",
+          "puissance": "300 ch",
+          "0_100": "5.7s",
+          "vitesse_max": "260 km/h",
+          "prix": "45 000 €",
+          "type": "compacte sportive"
+        },
+        "Clio": {
+          "annee": 1990,
+          "moteur": "L3 1.0L TCe",
+          "puissance": "91 ch",
+          "0_100": "11.8s",
+          "vitesse_max": "175 km/h",
+          "prix": "18 000 €",
+          "type": "citadine"
+        },
+        "Alpine A110": {
+          "annee": 2017,
+          "moteur": "L4 1.8L Turbo",
+          "puissance": "300 ch",
+          "0_100": "4.4s",
+          "vitesse_max": "270 km/h",
+          "prix": "65 000 €",
+          "type": "sportive légère"
+        }
+      }
+    },
+    "toyota": {
+      "origine": "Japon",
+      "fondation": 1937,
+      "fondateur": "Kiichiro Toyoda",
+      "segment": "généraliste / fiable",
+      "caracteristique": "Fiabilité légendaire, pionniers de l'hybride avec la Prius",
+      "modeles": {
+        "Supra GR": {
+          "annee": 2019,
+          "moteur": "L6 3.0L Turbo",
+          "puissance": "340 ch",
+          "0_100": "4.3s",
+          "vitesse_max": "250 km/h",
+          "prix": "60 000 €",
+          "type": "sportive"
+        },
+        "GR86": {
+          "annee": 2021,
+          "moteur": "Flat-4 2.4L",
+          "puissance": "234 ch",
+          "0_100": "6.3s",
+          "vitesse_max": "226 km/h",
+          "prix": "35 000 €",
+          "type": "coupé sportif"
+        },
+        "Land Cruiser": {
+          "annee": 1951,
+          "moteur": "V6 3.5L Turbo",
+          "puissance": "415 ch",
+          "0_100": "5.5s",
+          "vitesse_max": "210 km/h",
+          "prix": "85 000 €",
+          "type": "SUV tout-terrain"
+        }
+      }
+    }
+  },
+  "categories": {
+    "hypercar": ["Bugatti Chiron", "Bugatti Tourbillon", "Lamborghini Revuelto", "Ferrari SF90"],
+    "supercar": ["Ferrari 488 GTB", "Lamborghini Huracán", "Porsche 911", "Audi R8"],
+    "sportive": ["BMW M3", "Mercedes AMG GT", "Renault Alpine A110", "Toyota Supra GR"],
+    "electrique": ["Tesla Model S Plaid", "Tesla Model 3", "Porsche Taycan", "Tesla Cybertruck"],
+    "suv_premium": ["Porsche Cayenne", "BMW X5", "Mercedes GLE", "Audi Q7", "Lamborghini Urus"],
+    "berline_luxe": ["Mercedes Classe S", "BMW M5", "Audi RS6", "Porsche Panamera"]
+  }
+}

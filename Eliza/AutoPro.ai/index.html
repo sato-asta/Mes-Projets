@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPro.ai | L'intelligence artificielle des experts de l'automobile</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link href="/src/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-obsidian text-titanium font-sans antialiased selection:bg-telemetry selection:text-obsidian">
+
+    <nav class="fixed w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="cpu" class="text-telemetry h-6 w-6"></i>
+                <a href="#"><span class="font-display font-bold text-xl tracking-wider text-white">AUTOPRO<span class="text-telemetry">.AI</span></span></a>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#demo" class="hover:text-white transition-colors">Démo</a>
+                <a href="#features" class="hover:text-white transition-colors">Fonctionnalités</a>
+                <a href="#use-cases" class="hover:text-white transition-colors">Cas d'usage</a>
+                <a href="#roi" class="hover:text-white transition-colors">Impact Sales</a>
+                <a href="http://localhost:3000/login" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-md transition-all border border-white/10">Essayer gratuitement</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-display text-telemetry mb-6 border border-telemetry/30">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-telemetry opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-telemetry"></span>
+                    </span>
+                    Base de données 2026 en ligne • Argus en temps réel
+                </div>
+                <h1 class="font-display font-bold text-5xl lg:text-7xl text-white leading-tight mb-6">
+                    Conseillez avec la certitude d’un <span class="text-transparent bg-clip-text bg-linear-to-r from-telemetry to-indigo-200">Expert Auto.</span>
+                </h1>
+                <p class="text-lg lg:text-xl mb-8 leading-relaxed max-w-xl">
+                    Le premier LLM entraîné sur 20 ans de fiches techniques, historiques de fiabilité et données du marché VN/VO. Transformez l'information en argument de vente.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#demo" class="bg-telemetry text-obsidian font-display font-bold px-8 py-4 rounded-md text-center hover:bg-telemetry-hover transition-all glow flex items-center justify-center gap-2">
+                        Démarrer l'analyse gratuite <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="relative z-10 lg:ml-10">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-telemetry/5 rounded-full blur-3xl -z-10"></div>
+                <div class="glass rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                    <div class="bg-surface/80 border-b border-white/5 px-4 py-3 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <span class="font-mono text-xs text-titanium">analyse_client_comparatif.sh</span>
+                    </div>
+                    <div class="p-6 relative space-y-4 font-mono text-sm">
+                        <div class="text-white"><span class="text-telemetry">PROSPECT ></span> Comparatif TCO 36 mois : Peugeot 3008 PHEV vs Renault Austral E-Tech (15 000 km/an).</div>
+                        <div class="text-titanium animate-pulse">Traitement de plus de 2 millions de données de marché et coûts de maintenance...</div>
+                        <div class="glass p-4 rounded border-l-2 border-telemetry">
+                            <div class="text-white mb-2 font-display">VERDICT ANALYTIQUE :</div>
+                            <div class="text-telemetry text-xs">> Recommandation : Austral E-Tech privilégié pour ce profil. Avantage TCO de -12% grâce à une meilleure valeur résiduelle estimée et une absence de courroie de distribution.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">De la découverte client au closing en 3 secondes</h2>
+                <p>AutoPro.ai élimine le doute pour vous livrer l'argument parfait face à un acheteur hésitant.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-surface border border-white/10 flex items-center justify-center font-display font-bold text-white shrink-0">1</div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2">Contextualisez</h3>
+                            <p class="text-sm">Définissez le profil de votre client (Budget, composition familiale, trajets quotidiens urbains ou autoroutiers, attentes en confort).</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-surface border border-white/10 flex items-center justify-center font-display font-bold text-white shrink-0">2</div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2">Interrogez</h3>
+                            <p class="text-sm">Posez votre question en langage naturel. "Quel SUV familial d'occasion offre le meilleur rapport habitabilité/fiabilité pour 25 000€ ?"</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-telemetry/10 border border-telemetry/30 flex items-center justify-center font-display font-bold text-telemetry shrink-0 glow">3</div>
+                        <div>
+                            <h3 class="text-telemetry font-bold text-lg mb-2">Convainquez</h3>
+                            <p class="text-sm text-white">Recevez une fiche d'arguments structurée, chiffrée (TCO, consommation réelle) et prête à être présentée au client pour conclure la vente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative glass rounded-xl overflow-hidden aspect-video group cursor-pointer border-white/10">
+                    <div class="absolute inset-0 bg-obsidian flex flex-col items-center justify-center">
+                        <a href="http://localhost:3000/login" ><i data-lucide="play-circle" class="w-16 h-16 text-telemetry mb-4 group-hover:scale-125 transition-transform duration-300"></i></a>
+                        <span class="text-xs text-titanium mt-2">Durée : 1m 12s • Interface réelle. </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="use-cases" class="py-24 bg-surface/50 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 flex flex-col md:flex-row gap-8 justify-between items-end">
+                <div class="max-w-2xl">
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Une IA taillée pour les professionnels de l'auto</h2>
+                    <p>Que vous soyez en showroom, en expertise VO ou en recherche de mandat, AutoPro.ai devient votre meilleur atout technique.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass p-8 rounded-xl border-l-4 border-l-telemetry">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="user" class="text-white w-6 h-6"></i>
+                        <h3 class="font-display font-bold text-2xl text-white">Le Vendeur en Concession</h3>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">Le Problème :</strong> Le client compare votre modèle avec un concurrent direct et hésite à signer.</p>
+                        <p><strong class="text-white">La Solution :</strong> AutoPro génère instantanément un comparatif objectif mettant en valeur les forces de votre véhicule (coffre, multimédia, fiscalité).</p>
+                        <div class="mt-4 p-3 bg-obsidian rounded border border-white/5 text-telemetry">
+                            ↳ Résultat : Traitement des objections facilité + hausse du taux de conversion.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="briefcase" class="text-white w-6 h-6"></i>
+                        <h3 class="font-display font-bold text-2xl text-white">Le Courtier / Mandataire</h3>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">Le Problème :</strong> Trouver le "mouton à 5 pattes" parmi des dizaines de marques prend des heures de recherche.</p>
+                        <p><strong class="text-white">La Solution :</strong> L'algorithme croise les exigences du client avec l'intégralité du marché pour sortir le Top 3 idéal en 5 secondes.</p>
+                        <div class="mt-4 p-3 bg-obsidian rounded border border-white/5 text-telemetry">
+                            ↳ Résultat : Gain de temps massif en phase de sourcing client.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="scan" class="text-white w-6 h-6"></i>
+                        <h3 class="font-display font-bold text-2xl text-white">L'Estimateur Reprise VO</h3>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">Le Problème :</strong> Surévaluer une reprise à cause d'un défaut mécanique chronique méconnu sur un modèle spécifique.</p>
+                        <p><strong class="text-white">La Solution :</strong> Accès immédiat aux rappels constructeurs, pannes fréquentes (ex: PureTech, TSI) et courbe de décote.</p>
+                        <div class="mt-4 p-3 bg-obsidian rounded border border-white/5 text-telemetry">
+                            ↳ Résultat : Sécurisation des marges VO et minimisation des frais de remise en état.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="git-compare" class="text-white w-6 h-6"></i>
+                        <h3 class="font-display font-bold text-2xl text-white">Le Gestionnaire de Flotte B2B</h3>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">Le Problème :</strong> La fiscalité complexe (TVS, bonus, malus au poids) rend le calcul du TCO fastidieux.</p>
+                        <p><strong class="text-white">La Solution :</strong> Calcul automatisé et comparatif des coûts globaux de détention (loyer + énergie + fiscalité) sur 36/48 mois.</p>
+                        <div class="mt-4 p-3 bg-obsidian rounded border border-white/5 text-telemetry">
+                            ↳ Résultat : Des flottes optimisées financièrement et adaptées à la loi LOM.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roi" class="py-24 border-t border-white/5 relative">
+        <div class="absolute right-0 top-0 w-1/3 h-full bg-linear-to-l from-telemetry/5 to-transparent -z-10"></div>
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Dans l'automobile, la réactivité fait la vente.</h2>
+                    <p>Voici les performances mesurées sur un échantillon de 250 vendeurs équipés d'AutoPro.ai.</p>
+                </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="font-display font-bold text-5xl md:text-6xl text-white mb-2 glow-text">98<span class="text-telemetry">%</span></div>
+                    <div class="text-sm text-titanium font-medium uppercase tracking-wider">Précision Data</div>
+                    <p class="text-xs mt-2 opacity-70">Sur les valeurs résiduelles et caractéristiques techniques</p>
+                </div>
+                <div class="text-center">
+                    <div class="font-display font-bold text-5xl md:text-6xl text-white mb-2 glow-text">45<span class="text-telemetry">min</span></div>
+                    <div class="text-sm text-titanium font-medium uppercase tracking-wider">Temps économisé</div>
+                    <p class="text-xs mt-2 opacity-70">Par dossier client en moyenne</p>
+                </div>
+                <div class="text-center">
+                    <div class="font-display font-bold text-5xl md:text-6xl text-white mb-2 glow-text">+15<span class="text-telemetry">%</span></div>
+                    <div class="text-sm text-titanium font-medium uppercase tracking-wider">Taux de Closing</div>
+                    <p class="text-xs mt-2 opacity-70">Grâce à une meilleure gestion des objections</p>
+                </div>
+                <div class="text-center">
+                    <div class="font-display font-bold text-5xl md:text-6xl text-white mb-2 glow-text">4.6<span class="text-telemetry">/5</span></div>
+                    <div class="text-sm text-titanium font-medium uppercase tracking-wider">Satisfaction Client</div>
+                    <p class="text-xs mt-2 opacity-70">Note client approuvée par les utilisateurs d'AutoPro.Ai</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-surface/50 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">L'arsenal du vendeur moderne !</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-xl hover:-translate-y-1 transition-transform">
+                    <div class="w-12 h-12 bg-telemetry/10 rounded-lg flex items-center justify-center mb-6 border border-telemetry/20">
+                        <i data-lucide="scan" class="text-telemetry w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Une Fiche Technique 360°</h3>
+                    <p class="text-sm">Une radiographie complète du modèle. Consommation réelle estimée, avis presse, rappels constructeurs et coûts moyens d'entretien.</p>
+                </div>
+                <div class="glass p-8 rounded-xl hover:-translate-y-1 transition-transform">
+                    <div class="w-12 h-12 bg-telemetry/10 rounded-lg flex items-center justify-center mb-6 border border-telemetry/20">
+                        <i data-lucide="crosshair" class="text-telemetry w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Un Algorithme Client qui Match</h3>
+                    <p class="text-sm">Entrez le mode de vie du client (ex: "3 enfants, montagne le week-end, budget 30k") et obtenez immédiatement le véhicule parfait.</p>
+                </div>
+                <div class="glass p-8 rounded-xl hover:-translate-y-1 transition-transform">
+                    <div class="w-12 h-12 bg-telemetry/10 rounded-lg flex items-center justify-center mb-6 border border-telemetry/20">
+                        <i data-lucide="git-compare" class="text-telemetry w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Un Générateur de TCO</h3>
+                    <p class="text-sm">Générez des comptes rendus impitoyables sur les coûts réels d'utilisation (assurance, décote, carburant) pour prouver la rentabilité de votre offre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-obsidian border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex flex-col items-center justify-center text-center gap-6">
+                
+                <div class="flex flex-col items-center">
+                    <div class="font-display font-bold text-4xl text-telemetry tracking-tighter">
+                        300% 
+                    </div>
+                    <span class="block text-[10px] uppercase tracking-[0.3em] text-titanium mt-1">ROI GARANTI</span>
+                </div>
+
+                <div class="max-w-2xl">
+                    <blockquote class="text-lg md:text-xl text-white/90 italic leading-snug">
+                        "Une croissance de <span class="text-telemetry font-semibold">+12% MoM</span> et un retour sur investissement de 300% en 6 mois : AutoPro.ai a transformé notre rentabilité."
+                    </blockquote>
+                    <cite class="not-italic block mt-4 text-xs uppercase tracking-widest text-titanium font-medium">
+                        — J.M. Aubert, <span class="opacity-70 font-normal italic lowercase">Directeur Performance Groupe</span>
+                    </cite>
+                </div>
+
+                <div class="w-12 h-px bg-telemetry/40"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-telemetry/5"></div>
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div class="space-y-6">
+            <h2 class="font-display font-bold text-4xl md:text-5xl text-white">
+                Le marché ne vous attendra pas.
+            </h2>
+            <p class="text-lg text-titanium max-w-2xl mx-auto">
+                Si chaque client qui quitte votre concession sans signer est une perte sèche. Alors donnez à vos équipes l'outil ultime pour convaincre dès le premier rendez-vous.
+            </p>
+        </div>
+        <div class="my-16">
+            <div class="w-full h-px bg-linear-to-r from-transparent via-telemetry to-transparent opacity-40"></div>
+        </div>
+        <div class="space-y-4">
+            <a href="http://localhost:3000/register" class="inline-flex bg-telemetry text-obsidian font-display font-bold px-10 py-5 rounded-md text-lg hover:bg-telemetry-hover transition-all glow items-center justify-center gap-1">
+                Créer mon compte professionnel
+                <i data-lucide="zap" class="w-5 h-5"></i>
+            </a>
+
+            <p class="text-xs font-mono text-titanium">
+                Aucune carte de crédit requise • Déploiement instantané
+            </p>
+        </div>
+    </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-obsidian py-8">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-display font-bold text-white tracking-wider">AUTOPRO<span class="text-telemetry">.AI</span></div>
+            <div class="text-xs text-titanium">© 2026 AutoPro AI Ltd. Dédié aux professionnels de l'automobile.</div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+transformers
+torch
+requests
+huggingface_hub
+accelerate
+pytest
+httpx
+pyjwt
+bcrypt
+openai
