@@ -1,0 +1,35 @@
+/*
+** EPITECH PROJECT, 2025
+** mystrncat
+** File description:
+** exercise 3
+*/
+
+#include <stdio.h>
+
+int my_strlen01(char const *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != '\0') {
+        i++;
+    }
+    return (i);
+}
+
+char *my_strncat(char *dest, char const *src, int nb)
+{
+    int i = 0;
+    int n = nb;
+    int max_len = my_strlen01(dest);
+
+    if (n > my_strlen01(src)) {
+        return 0;
+    }
+    for (; i < n; i++) {
+        dest[max_len + i] = src[i];
+    }
+    dest[max_len + n] = '\0';
+    return dest;
+}

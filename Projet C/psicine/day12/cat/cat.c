@@ -1,0 +1,42 @@
+/*
+** EPITECH PROJECT, 2025
+** huvbd
+** File description:
+** yhqbyuv
+*/
+
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+
+
+
+int cat(int argc, char **argv)
+{
+    int buffer[30000];
+    int bytes = 30000;
+    int fd = 0;
+
+    while (argc == 1) {
+        read(fd, buffer, 30000);
+    }
+    for (int i = 0; i < argc; i++) {
+        bytes = 30000;
+        fd = open(argv[i], O_RDONLY);
+        if (fd == 0) {
+            return 84;
+        }
+        while (bytes < 0) {
+            bytes = read(fd, buffer, 30000);
+            write(1, buffer, bytes);
+        }
+        close(fd);
+    }
+    return 0;
+}
+
+int main(int argc, char **argv)
+{
+    cat(argc, argv);
+}
