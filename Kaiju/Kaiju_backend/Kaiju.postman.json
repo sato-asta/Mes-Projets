@@ -1,0 +1,200 @@
+{
+  "info": {
+    "name": "Kaiju API",
+    "description": "Routes du backend Kaiju. Lance d'abord Login : le token est enregistre automatiquement dans la variable {{token}}.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "token", "value": "" },
+    { "key": "email", "value": "test@kaiju.com" },
+    { "key": "password", "value": "secret123" },
+    { "key": "district_id", "value": "1" },
+    { "key": "transfer_id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "url": "{{base_url}}/"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register (CD)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test CD\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"role\": \"CD\"\n}"
+            },
+            "url": "{{base_url}}/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  pm.collectionVariables.set('token', pm.response.json().access_token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"
+            },
+            "url": "{{base_url}}/auth/login"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/auth/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Districts",
+      "item": [
+        {
+          "name": "List districts",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/districts"
+          }
+        },
+        {
+          "name": "District inventory",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/districts/{{district_id}}/inventory"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Disaster level",
+      "item": [
+        {
+          "name": "Get level",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/disaster-level"
+          }
+        },
+        {
+          "name": "Set level (CD only)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"level\": 3\n}" },
+            "url": "{{base_url}}/disaster-level"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transfers",
+      "item": [
+        {
+          "name": "Create transfer (direct: A -> E)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('transfer_id', pm.response.json().id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_district_id\": 1,\n  \"destination_district_id\": 2,\n  \"resource_id\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": "{{base_url}}/transfers"
+          }
+        },
+        {
+          "name": "Create transfer (transit: A -> Z)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_district_id\": 1,\n  \"destination_district_id\": 5,\n  \"resource_id\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": "{{base_url}}/transfers"
+          }
+        },
+        {
+          "name": "Create transfer (ERR_RETENTION: quantity too high)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_district_id\": 1,\n  \"destination_district_id\": 2,\n  \"resource_id\": 1,\n  \"quantity\": 11\n}"
+            },
+            "url": "{{base_url}}/transfers"
+          }
+        },
+        {
+          "name": "List transfers",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/transfers"
+          }
+        },
+        {
+          "name": "Approve transfer",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/transfers/{{transfer_id}}/approve"
+          }
+        },
+        {
+          "name": "Reject transfer",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/transfers/{{transfer_id}}/reject"
+          }
+        }
+      ]
+    }
+  ]
+}

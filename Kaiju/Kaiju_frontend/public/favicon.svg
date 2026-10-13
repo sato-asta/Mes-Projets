@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="kaijuWing" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="28%" stop-color="#38bdf8" />
+      <stop offset="65%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="kaijuCore" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="30%" stop-color="#22d3ee" />
+      <stop offset="80%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <filter id="kaijuGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#67e8f9" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="128" height="128" fill="#03070d" rx="18" />
+
+  <g filter="url(#kaijuGlow)" opacity="0.9">
+    <polygon points="10,42 34,18 75,50 58,62" fill="url(#kaijuWing)" />
+    <polygon points="118,42 94,18 53,50 70,62" fill="url(#kaijuWing)" />
+    <polygon points="14,66 40,54 68,90 50,103" fill="url(#kaijuWing)" />
+    <polygon points="114,66 88,54 60,90 78,103" fill="url(#kaijuWing)" />
+  </g>
+
+  <g filter="url(#kaijuGlow)">
+    <path d="M52 18 L61 18 L83 60 L97 60 L74 73 L93 110 L84 110 L64 76 L57 76 L64 110 L52 110 L41 68 L34 68 L52 60 Z" fill="url(#kaijuCore)" />
+    <path d="M41 18 L52 18 L69 60 L58 60 Z" fill="url(#kaijuCore)" opacity="0.8" />
+    <path d="M67 18 L78 18 L63 60 L52 60 Z" fill="url(#kaijuCore)" opacity="0.85" />
+  </g>
+
+  <path d="M23 15 L30 23 L22 31 L15 22 Z" fill="#67e8f9" opacity="0.8" />
+  <path d="M96 15 L103 23 L95 31 L88 22 Z" fill="#67e8f9" opacity="0.8" />
+  <path d="M34 98 L41 106 L33 114 L26 106 Z" fill="#67e8f9" opacity="0.8" />
+  <path d="M94 98 L101 106 L93 114 L86 106 Z" fill="#67e8f9" opacity="0.8" />
+</svg>

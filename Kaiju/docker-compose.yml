@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: kaiju_user
+      POSTGRES_PASSWORD: kaiju_pass
+      POSTGRES_DB: kaiju_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kaiju_user -d kaiju_db"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Kaiju_backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://kaiju_user:kaiju_pass@db:5432/kaiju_db
+      JWT_SECRET: ${JWT_SECRET:-change-me-to-a-long-random-string}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_MINUTES: 60
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./Kaiju_frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:
